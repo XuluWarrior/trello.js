@@ -1,16 +1,26 @@
 name: live-tests
 
+# Disabled: this workflow requires the TRELLO_API_KEY, TRELLO_API_TOKEN,
+# TRELLO_MEMBER2_ID and TRELLO_MEMBER2_EMAIL secrets.
+#
+# To re-enable: restore the commented triggers below, drop the
+# `workflow_dispatch` placeholder, and replace `if: ${{ false }}` on the job
+# with the original fork guard:
+#   if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name != 'pull_request'
+#
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 6 * * 1'
+#   pull_request:
+#     branches: [master]
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * 1'
-  pull_request:
-    branches: [master]
 
 jobs:
   live:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name != 'pull_request'
+    if: ${{ false }}
     timeout-minutes: 15
 
     steps:

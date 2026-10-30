@@ -1,13 +1,22 @@
 name: schema-audit
 
+# Disabled: this workflow requires the TRELLO_API_KEY, TRELLO_API_TOKEN,
+# TRELLO_MEMBER2_ID and TRELLO_MEMBER2_EMAIL secrets.
+#
+# To re-enable: restore the commented triggers below, drop the
+# `workflow_dispatch` placeholder, and remove `if: ${{ false }}` from the job.
+#
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 6 * * *'
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * *'
 
 jobs:
   audit:
     runs-on: ubuntu-latest
+    if: ${{ false }}
     timeout-minutes: 15
 
     steps:
